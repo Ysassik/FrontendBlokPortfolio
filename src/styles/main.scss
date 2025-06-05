@@ -1,0 +1,60 @@
+@use 'var-light' as *;
+@use 'font' as *;
+@use "scss-reset";
+
+body {
+    font-family: $font;
+    font-weight: 400;
+    margin: 0;
+    background-color: $bg;
+}
+.container {
+    margin: 0 auto;
+    max-width: 1230px;
+    padding: 0 45px;
+}
+a {       
+    text-decoration: none;
+    color: $dark;
+    transition: $tr;
+    &:hover {
+        color: $accent;
+    }
+}
+
+.header {
+    &__inner {      /* СОДЕРЖИМОЕ ШАПКИ */
+        font-size: 14px;
+        display: flex;
+        justify-content: space-between;
+        height: 104px;
+        align-items: center;
+    }
+    &__link {       /* БЛОК С ССЫЛКАМИ */
+        display: flex;
+        gap: 28px;
+    }
+    &__contact {    /* БЛОК С КОНТАКТАМИ */
+        display: flex;
+        gap: 13px;
+    }
+    &__item {       /* СОДЕРЖИМОЕ ССЫЛОК И КОНТАКТОВ */
+        user-select: none;
+        line-height: 150%;
+        &.wall {        /* КОНТАКТ СО СТЕНОЙ ПОСЛЕ НЕГО */
+            margin-right: 14px;
+            position: relative;
+            &::after {
+                content: '';
+                display: block;
+                position: absolute;
+                right: -14px;
+                top: -3px;
+                width: 1px;
+                background-color: $dark;
+                height: 24px;
+                opacity: 0.2;
+            }
+        }
+    }
+}
