@@ -1,0 +1,36 @@
+{
+  "name": "frontendblokportfolio",
+  "scripts": {
+    "build": "webpack",
+    "dev": "webpack serve --env develop"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ysassik/FrontendBlokPortfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ysassik/FrontendBlokPortfolio/issues"
+  },
+  "homepage": "https://github.com/Ysassik/FrontendBlokPortfolio#readme",
+  "devDependencies": {
+    "css-loader": "^7.1.2",
+    "html-loader": "^5.1.0",
+    "mini-css-extract-plugin": "^2.9.2",
+    "mini-extract-plugin": "^1.4.3",
+    "sass": "^1.89.1",
+    "sass-loader": "^16.0.5",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.99.9",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.1"
+  },
+  "dependencies": {
+    "html-webpack-plugin": "^5.6.3",
+    "reset-scss": "^1.0.0",
+    "scss-reset": "^1.4.6",
+    "swiper": "^11.2.6"
+  }
+}
