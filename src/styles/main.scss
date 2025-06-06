@@ -7,6 +7,7 @@ body {
     font-weight: 400;
     margin: 0;
     background-color: $bg;
+    color: $dark;
 }
 .container {
     margin: 0 auto;
@@ -19,6 +20,108 @@ a {
     transition: $tr;
     &:hover {
         color: $accent;
+    }
+}
+.contact_link {
+        user-select: none;
+        line-height: 150%;
+        &:not(:last-child) {        /* КОНТАКТ СО СТЕНОЙ ПОСЛЕ НЕГО */
+            margin-right: 14px;
+            position: relative;
+            &::after {
+                content: '';
+                display: block;
+                position: absolute;
+                right: -14px;
+                top: -3px;
+                width: 1px;
+                background-color: $dark;
+                height: 24px;
+                opacity: 0.2;
+            }
+        }
+}
+.social_link {
+    user-select: none;
+        line-height: 150%;
+        &:not(:last-child) {        /* КОНТАКТ СО СТЕНОЙ ПОСЛЕ НЕГО */
+            margin-right: 29px;
+            position: relative;
+            &::after {
+                content: '';
+                display: block;
+                position: absolute;
+                right: -28px;
+                top: -3px;
+                width: 1px;
+                background-color: $dark;
+                height: 24px;
+                opacity: 0.2;
+            }
+        }
+}
+.discuss {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    position: relative;
+    &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: -11px;
+        height: 2px;
+        width: 100%;
+        transform: scale(0);
+        transform-origin: left;
+        transition: $tr;
+        background-color: $dark;
+    }
+    &::after {
+        content: '';
+        display: inline-block;
+        background-image: url(../images/bio/Arrow.svg);
+        background-repeat: no-repeat;
+        width: 15.75px;
+        height: 11.05px;
+        margin-left: 15px;
+        
+    }
+    &:hover {
+        &::before {
+            transform: scale(1);
+        }
+    }
+}
+.circle {
+    position: absolute;
+    background-color: $light;
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.title-h1 {
+    font-weight: 700;
+    font-size: 74px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+.text {
+    display: flex;
+    flex-direction: column;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    text-wrap-mode: nowrap;
+    span {
+        opacity: 0.8;
+        font-size: 14px;
+        letter-spacing: normal;
+        font-weight: 400;
+        text-transform: none;
+        text-wrap: balance;
     }
 }
 
@@ -41,20 +144,85 @@ a {
     &__item {       /* СОДЕРЖИМОЕ ССЫЛОК И КОНТАКТОВ */
         user-select: none;
         line-height: 150%;
-        &.wall {        /* КОНТАКТ СО СТЕНОЙ ПОСЛЕ НЕГО */
-            margin-right: 14px;
-            position: relative;
-            &::after {
-                content: '';
-                display: block;
-                position: absolute;
-                right: -14px;
-                top: -3px;
-                width: 1px;
-                background-color: $dark;
-                height: 24px;
-                opacity: 0.2;
-            }
+    }
+    &__hero {
+        margin-top: 20px;
+    }
+}
+.bio {
+    margin-top: 120px;
+    
+    &__circle {  /* Круг */
+        height: 253px;
+        width: 253px;
+        top: -55px;
+        transform: translateX(-50%);
+    }
+    &__triangle {   /* Треугольник */
+        position: absolute;
+        width: 76px;
+        height: 72px;
+        top: 38px;
+        left: -28px;
+    }
+    
+    &__title {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+    &__name {
+        line-height: 150%;
+        font-size: 28px;
+    }
+    &__main {
+        margin-top: 100px;
+        margin-bottom: 180px;
+        &_title {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 60px;
+            border-bottom: 1px solid $dark;
+        }
+    }
+    &__social {
+        display: flex;
+        gap: 28px;
+        position: relative;
+        &::after {
+            content: '';
+            display: block;
+            background-color: $light;
+            border-radius: 50%;
+            z-index: -1;
+            position: absolute;
+            width: 106px;
+            height: 106px;
+            top: 50%;
+            right: 39px;
+            transform: translateY(-50%);
+        }
+    }
+    &__direction {
+        padding-top: 60px;
+        display: flex;
+        gap: 15px;
+        justify-content: space-between;
+        &_text {
+            gap: 15px;
+        }
+        .frontend {
+            max-width: 197px;
+        }
+        .backend {
+            max-width: 211px;
+        }
+        .wp {
+            max-width: 203px;
+        }
+        .seo {
+            max-width: 238px;
         }
     }
 }
