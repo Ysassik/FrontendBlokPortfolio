@@ -29,7 +29,7 @@ module.exports = ({develop}) => ({
   module: {
     rules: [
         {
-            test: /\.(png|svg|jpg|jpeg)$/i,
+            test: /\.(webp|png|svg)$/i,
             type: 'asset/inline',
           },
         {
@@ -49,7 +49,7 @@ module.exports = ({develop}) => ({
             ]
           },
         {
-            test: /\.(woff|woff2|eot|ttf|otf)$/i,
+            test: /\.(ttf)$/i,
             type: 'asset/resource',
             generator: {
               filename: 'font/[hash][ext][query]'
