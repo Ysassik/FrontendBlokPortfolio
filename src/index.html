@@ -48,7 +48,7 @@
                 <div class="about__features features">
                     <div class="features__head head">
                         <button class="features__btn popup_btn">Обсудить проект</button>
-                        <div class="features__social">
+                        <div class="features__social social">
                                 <a href="" class="social_link">Vk</a>
                                 <a href="" class="social_link">Instagram</a>
                                 <a href="" class="social_link">Linkedin</a>
@@ -271,12 +271,12 @@
                 <ul class="tariffs__list">
                     <li class="tariffs__item">
                         <div class="tariffs__description">
-                            <h3 class="tariffs__description_title title__h3">Разработка<br>лэндинга или сайт визитки
-                            <span class="tariffs__description_text">Небольшой сайт состоящий из одной страницы</span></h3>
+                            <h3 class="tariffs__description-title title__h3">Разработка<br>лэндинга или сайт визитки
+                            <span class="tariffs__description-text">Небольшой сайт состоящий из одной страницы</span></h3>
                             <button class="popup_btn">Обсудить проект</button>
                         </div>
                         <div class="tariffs__info">
-                            <div class="tariffs__info_include include">
+                            <div class="tariffs__info-include include">
                                 <p class="include__title">Что входит</p>
                                 <ul class="include__list">
                                     <li class="include__item">
@@ -295,12 +295,12 @@
                     </li>
                     <li class="tariffs__item">
                         <div class="tariffs__description">
-                            <h3 class="tariffs__description_title title__h3">Разработка<br>корпоративного  сайта
-                            <span class="tariffs__description_text">Небольшой сайт с n-количеством страниц</span></h3>
+                            <h3 class="tariffs__description-title title__h3">Разработка<br>корпоративного  сайта
+                            <span>Небольшой сайт с n-количеством страниц</span></h3>
                             <button class="popup_btn">Обсудить проект</button>
                         </div>
                         <div class="tariffs__info">
-                            <div class="tariffs__info_include include">
+                            <div class="tariffs__info-include include">
                                 <p class="include__title">Что входит</p>
                                 <ul class="include__list">
                                     <li class="include__item">
@@ -319,12 +319,12 @@
                     </li>
                     <li class="tariffs__item">
                         <div class="tariffs__description">
-                            <h3 class="tariffs__description_title title__h3">Разработка<br>интернет - магазина
-                            <span class="tariffs__description_text">Полноценный каталог вашей продукции</span></h3>
+                            <h3 class="tariffs__description-title title__h3">Разработка<br>интернет - магазина
+                            <span class="tariffs__description-text">Полноценный каталог вашей продукции</span></h3>
                             <button class="popup_btn">Обсудить проект</button>
                         </div>
                         <div class="tariffs__info">
-                            <div class="tariffs__info_include include">
+                            <div class="tariffs__info-include include">
                                 <p class="include__title">Что входит</p>
                                 <ul class="include__list">
                                     <li class="include__item">
@@ -342,6 +342,39 @@
                         </div>
                     </li>
                 </ul>
+            </div>
+        </section>
+        <section class="feedback">
+            <div class="container">
+                <div class="feedback__head head">
+                    <div class="feedback__circle circle">
+                        <img class="feedback__triangle" src="./images/bio/Polygon.svg" alt="">
+                    </div>
+                    <h2 class="feedback__title title__h2">
+                        Расскажите<br>о своем проекте
+                    </h2>
+                    <p class="feedback__text description">
+                        Воспользуйтесь формой обратной связи, чтобы обсудить ваш проект, заполните все поля, и я свяжусь с&nbsp;вами&nbsp;в&nbsp;ближайшее время
+                    </p>
+                </div>
+                <div class="feedback__content">
+                    <div class="feedback__social social">
+                        <a href="" class="social_link">Vk</a>
+                        <a href="" class="social_link">Instagram</a>
+                        <a href="" class="social_link">Linkedin</a>
+                    </div>
+                    <div class="feedback__forms">
+                        <form>
+                            <label class="feedback__label" for="num">Телефон или почта</label>
+                            <input class="feedback__input" id="num" type="tel" placeholder="Введите телефон" pattern="[+]7\([0-9]{3}\)[0-9]{3}-[0-9]{2}-[0-9]{2}">
+                            <label class="feedback__label" for="dropdownInput">Выберите удобный способ связи</label>
+                            <input type="text" class="feedback__input feedback__arrow" id="dropdownInput" readonly aria-haspopup="listbox" aria-expanded="false" />
+                            <div class="feedback__dropdown dropdown-list" id="dropdownList" role="listbox">
+                            </div>
+                            <input type="submit" class="feedback__btn" placeholder="Отправить">
+                        </form>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
