@@ -69,7 +69,7 @@ import './styles/main.scss'
   updateDropdown();
 
 
-  // Для popup
+  // Формы для поп-ап
   const itemspopup = [
     "Telegram",
     "WhatsApp",
@@ -138,21 +138,34 @@ import './styles/main.scss'
   // Инициализация
   updateDropdownpopup();
 
+  //Открытие и закрытие POP-UP, а также затемнение фона
 
-  const openBtn = document.getElementById('openPopupBtn');
+  const openBtn = document.querySelectorAll('.popup_btn');
   const closeBtn = document.getElementById('closePopupBtn');
   const popup = document.getElementById('popup');
   const overlay = document.getElementById('popupOverlay');
+  const submit = document.getElementById('submit_close');
 
-  openBtn.addEventListener('click', () => {
-    popup.classList.add('popup__open');
-    overlay.classList.add('popupOverlay__open');
-  });
+  openBtn.forEach((item) => {
+    item.addEventListener('click', () => {
+      popup.classList.add('popup__open');
+      overlay.classList.add('popupOverlay__open');
+    })
+  })
 
   function closePopup() {
     popup.classList.remove('popup__open');
     overlay.classList.remove('popupOverlay__open');
   }
 
+  submit.addEventListener('click', closePopup);
   closeBtn.addEventListener('click', closePopup);
   overlay.addEventListener('click', closePopup);
+
+
+  //
+  const form = document.querySelectorAll('form');
+  openBtn.forEach((item) => {
+    item.addEventListener('submit', async (event) => {
+    event.preventDefault()}) // Предотвращаем перезагрузку
+    })
