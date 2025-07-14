@@ -187,8 +187,12 @@ label {
         font-weight: 400;
         font-size: 28px;
         line-height: 150%;
+        @media (max-width: $r_desk) {
+            font-size: clamp(16px, 2vw + 0.5rem, 28px);
+        }
     }
     &__hidden {
+        position: absolute;
         max-height: 0px;
         visibility: hidden;
         font-size: 0px;
@@ -217,6 +221,16 @@ label {
             font-size: clamp(10px, 1.087vw + 0.353rem, 14px);
         }
     }
+    &.benefit__text {
+        @media (max-width: $r_desk) {
+            font-size: clamp(12px, 0.667vw + 0.583rem, 16px);
+            line-height: normal;
+            span {
+                font-size: clamp(12px, 0.333vw + 0.667rem, 14px);
+                line-height: 150%;
+            }
+        }
+    }
 }
 .head {
     display: flex;
@@ -238,7 +252,7 @@ label {
 section {
     margin-top: 180px;
     @media (max-width: $r_tab) {
-        margin-top: 80px;
+        margin-top: 60px;
     }
 }
 .header {
@@ -358,6 +372,9 @@ section {
     }
 }
 .info {
+    @media (max-width: $r_tab) {
+        margin-top: 80px;
+    }
     &__head {
         gap: 20px;
     }
@@ -412,40 +429,51 @@ section {
         padding: 30px 0 29px 0;
         gap: 20px;
         border-bottom: 1px solid $dark;
-        &:nth-child(1) {
+        &:first-child {
             border-top: 1px solid $dark;
-            h3::before {
-                content: '01';
-                display: block;
+        }
+        @media (max-width: $r_tab) {
+            padding: 14px 0 15px 0;
+            gap: 2px;
+        }
+        @media (max-width: $r_mobile_s) {
+            &:last-child {
+                p {
+                    padding-right: 40px;
+                }
             }
         }
-        &:nth-child(2) {
-            h3::before {
-                content: '02';
-                display: block;
-            }
-        }
-        &:nth-child(3) {
-            h3::before {
-                content: '03';
-                display: block;
-            }
-        }
-        span {
+        p {
             flex-basis: 50%;
             font-weight: 400;
             font-size: 16px;
             line-height: 150%;
             opacity: 0.8;
+            @media (max-width: $r_desk) {
+                font-size: clamp(12px, 0.667vw + 0.583rem, 16px);
+            }
         }
     }
-    &__text  {
-        display: flex;
+    &__text {
         flex-basis: 50%;
-        gap: 40px;
+        span {
+            margin-right: 40px;
+            @media (max-width: $r_desk_min) {
+                margin-right: 9px;
+            }
+        }
+        br {
+            display: none;
+            @media (max-width: $r_mobile) {
+                display: inline;
+            }
+        }
     }
 }
 .portfolio {
+    @media (max-width: $r_tab) {
+        margin-top: 80px;
+    }
     &__title {
         position: relative;
         z-index: 100;
@@ -456,12 +484,22 @@ section {
     &__circle {
         width: 465px;
         height: 465px;
-        top: -89px;
-        left: 347px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-48%, -29%);
+        @media (max-width: $r_tab) {
+            width: clamp(197px, 72.826vw - 5.894rem, 465px);
+            height: clamp(197px, 72.826vw - 5.894rem, 465px);
+            transform: translate(-13%, -26%);
+
+        }
     }
     &__works {
         margin-top: 144px;
         background: linear-gradient(180deg, #e7e6e6 0%, rgba(231, 230, 230, 0) 100%);
+        @media (max-width: $r_tab) {
+            margin-top: 69px;
+        }
     }
     &__content {
         display: flex;
@@ -471,14 +509,46 @@ section {
         padding: 60px 0 59px 0;
         border-bottom: 1px solid $dark;
         z-index: 800;
+        @media (max-width: $r_tab) {
+            flex-direction: column;
+            justify-content: inherit;
+            align-items: inherit;
+            gap: 40px;
+            padding: 40px 0 39px 0;
+        }
         &:first-child {
             padding-top: 61px;
+            @media (max-width: $r_tab) {
+                padding-top: 41px;
+            }
         }
+    }
+    &__img {
+        img {
+            @media (max-width: $r_tab) {
+                width: 100%;
+            }
+        }
+        &.tab {
+            display: none;
+            @media (max-width: $r_tab) {
+                display: block;
+            }
+        }
+        &.desk {
+            @media (max-width: $r_tab) {
+                display: none;
+            }
+        }
+
     }
     .item-box {
         display: flex;
         flex-direction: column;
         gap: 40px;
+        @media (max-width: $r_tab) {
+            gap: 20px;
+        }
         &__title {
             text-transform: none;
             letter-spacing: normal;
@@ -493,16 +563,25 @@ section {
             font-size: 16px;
             line-height: 150%;
             opacity: 0.8;
+            @media (max-width: $r_desk) {
+                font-size: clamp(12px, 0.667vw + 0.583rem, 16px);
+            }
         }
         &__total {
             font-weight: 700;
             font-size: 16px;
             line-height: 150%;
             opacity: 0.8;
+            @media (max-width: $r_desk) {
+                font-size: clamp(12px, 0.667vw + 0.583rem, 16px);
+            }
         }
     }
 }
 .benefit {
+    @media (max-width: $r_tab) {
+        margin-top: 80px;
+    }
     &__title {
         visibility: hidden;
         width: 0;
@@ -511,22 +590,39 @@ section {
     &__head {
         padding-bottom: 79px;
         justify-content: start;
+        @media (max-width: $r_tab) {
+            padding-bottom: 39px;
+        }
     }
     &__text {
         max-width: 870px;
         gap: 8px;
+        @media (max-width: $r_tab) {
+            gap: 15px;
+        }
     }
     &__list {
         margin-top: 79px;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 80px 20px;
+        @media (max-width: $r_tab) {
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
     }
     &__item {
         display: flex;
         gap: 40px;
         align-items: center;
         max-height: 71px;
+        @media (max-width: $r_desk) {
+            img {
+                width: clamp(30px, 1.667vw + 1.458rem, 40px);
+                height: clamp(30px, 1.667vw + 1.458rem, 40px);
+            }
+        }
     }
 }
 .stack {
@@ -544,12 +640,18 @@ section {
         border-bottom: 1px solid rgba(1, 1, 1, .3);
         position: relative;
         transform-origin: top;
+        @media (max-width: $r_desk) {
+            height: clamp(44px, 17.333vw - 1.583rem, 148px);
+        }
         img {
             position: absolute;
             opacity: 0.3;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            @media (max-width: $r_desk) {
+                height: -webkit-fill-available;
+            }
         }
         .img-blend {
             mix-blend-mode: luminosity;
@@ -564,11 +666,15 @@ section {
         background-color: #E31B1B;
         padding: 28px 15px 27px 15px;
         top: 126px;
-        margin-inline: 27px;
+        margin-inline: $inline-margin-tooltip_desktomobile;
         z-index: 999;
         transform: scale(0);
         transform-origin: top;
         transition: $tr;
+        @media (max-width: $r_desk) {
+            padding: 10px 5px;
+            top: clamp(45px, 13.5vw - 0.563rem, 126px);
+        }
         &::after {
             content: '';
             display: block;
@@ -591,10 +697,13 @@ section {
         display: flex;
         flex-direction: column;
         gap: 10px;
+        @media (max-width: $r_desk) {
+            font-size: clamp(6px, 0.667vw + 0.208rem, 10px);
+        }
     }
     &__item:hover {
         .stack__description {
-            transform: scale(1)
+            transform: scale(1);
         }
         .img-blend {
             mix-blend-mode: inherit;
