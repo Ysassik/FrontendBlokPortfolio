@@ -169,3 +169,33 @@ import './styles/main.scss'
     item.addEventListener('submit', async (event) => {
     event.preventDefault()}) // Предотвращаем перезагрузку
     })
+
+  const burger = document.getElementById('burger');
+
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('active');
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+  const burger = document.getElementById('burger');
+  const menu = document.querySelector('.header__inner');
+  const contact = document.querySelector('._mobile');
+  const overlay = document.getElementById('popupOverlay');
+
+  function toggleMenu() {
+    if (window.innerWidth <= 768) {
+      menu.classList.toggle('active');
+      contact.classList.toggle('active');
+      overlay.classList.toggle('popupOverlay__open');
+    }
+  }
+
+  burger.addEventListener('click', toggleMenu);
+
+  // Дополнительно: при изменении размера экрана закрывать меню если ширина >768
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) {
+      menu.classList.remove('active');
+    }
+  });
+});

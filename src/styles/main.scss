@@ -29,6 +29,9 @@ a {
 label {
     display: inline-block;
     margin-bottom: 10px;
+    @media (max-width: $r_tab) {
+        margin-bottom: 8px;
+    }
 }
 .nav-box {
     &__inner {      /* СОДЕРЖИМОЕ ШАПКИ */
@@ -41,20 +44,47 @@ label {
     &__link {       /* БЛОК С ССЫЛКАМИ */
         display: flex;
         gap: 28px;
+        @media (max-width: $r_desk_full) {
+            gap: clamp(15px, 3.009vw - 0.507rem, 28px);
+        }
+        @media (max-width: $r_tab) {
+            justify-content: center;
+        }
     }
     &__contact {    /* БЛОК С КОНТАКТАМИ */
         display: flex;
         gap: 13px;
         justify-content: flex-end;
+        @media (max-width: $r_tab) {
+            justify-content: center;
+        }
     }
     &__item {       /* СОДЕРЖИМОЕ ССЫЛОК И КОНТАКТОВ */
         user-select: none;
         line-height: 150%;
+        @media (max-width: $r_desk) {
+            font-size: clamp(10px, 0.667vw + 0.458rem, 14px);
+        }
     }
 }
 .contact_link {
         user-select: none;
         line-height: 150%;
+        font-size: 14px;
+        &._header {
+            @media (max-width: $r_tab) {
+                font-size: 14px;
+            }
+        }
+        &._footer {
+            @media (max-width: $r_tab) {
+                font-size: 14px;
+            }
+        }
+        &.active {
+            opacity: 0;
+            visibility: hidden;
+        }
         &:not(:last-child) {        /* КОНТАКТ СО СТЕНОЙ ПОСЛЕ НЕГО */
             margin-right: 14px;
             position: relative;
@@ -68,6 +98,16 @@ label {
                 background-color: $dark;
                 height: 24px;
                 opacity: 0.2;
+            }
+        }
+        &._mobile {
+            display: none;
+            font-size: 14px;
+            &::after {
+                display: none;
+            }
+            @media (max-width: $r_tab) {
+                display: block;
             }
         }
 }
@@ -107,6 +147,15 @@ label {
     gap: 28px;
     position: relative;
     align-items: center;
+    &._burger {
+        display: none;
+        &::after {
+            display: none;
+        }
+        @media (max-width: $r_tab) {
+            display: block;
+        }
+    }
     @media (max-width: $r_tab) {
         font-size: 12px;
         gap: 10px;
@@ -120,6 +169,8 @@ label {
     line-height: 150%;
     width: fit-content;
     position: relative;
+    color: $font-color;
+    text-decoration: none;
     @media (max-width: $r_desk) {
         font-size: clamp(12px, 0.667vw + 0.583rem, 16px);
     }
@@ -222,12 +273,14 @@ label {
         }
     }
     &.benefit__text {
+        line-height: normal;
+        span {
+            line-height: 150%;
+        }
         @media (max-width: $r_desk) {
             font-size: clamp(12px, 0.667vw + 0.583rem, 16px);
-            line-height: normal;
             span {
                 font-size: clamp(12px, 0.333vw + 0.667rem, 14px);
-                line-height: 150%;
             }
         }
     }
@@ -256,12 +309,124 @@ section {
     }
 }
 .header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: $bg;
+    z-index: 999;
+    @media (max-width: $r_tab) {
+        padding: 20px 0;
+    }
+    &__wrapper {
+        @media (max-width: $r_tab) {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+        }    
+    }
     &__inner {
         height: 104px;
+        transition: $tr;
+        @media (max-width: $r_tab) {
+            max-height: 0px;
+            overflow: hidden;
+            position: absolute;
+            opacity: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 999;
+        }    
+    }
+    &__inner.active {
+        display: flex;
+        flex-direction: column;
+        max-height: max-content;
+        height: max-content;
+        width: 100%;
+        top: 100%;
+        z-index: 999;
+        background-color: $bg;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 40px 10px 40px 10px;
+        opacity: 100;
+    }
+    &__link {
+        justify-content: inherit;
+        @media (max-width: $r_tab) {
+            display: flex;
+            flex-direction: column;
+            gap: inherit;
+            li {
+                padding: 20px 0;
+                border-top: 1px solid $dark;
+            }
+            li:last-child {
+                border-bottom: 1px solid $dark;
+            }
+        }  
+    }
+    &__nav {
+        @media (max-width: $r_tab) {
+            width: 100%;
+            text-align: center;
+        }  
+    }
+    &__item {
+        @media (max-width: $r_tab) {
+            font-size: 26px;
+        }  
     }
 }
+.burger {
+    display: none;
+    position: relative;
+    border: none;
+    background: transparent;
+    width: 24px;
+    height: 20px;
+    @media (max-width: $r_tab) {
+        display: block;
+    }
+    &::before,&::after {
+        content: '';
+        left: 0;
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 2px;
+        background: $dark;
+    }
+    &::before {
+        top: 0;
+        box-shadow: 0 9px 0 #000;
+    }
+    &::after {
+        bottom: 0;
+    }
+    &::before {
+        transition: box-shadow .3s .15s, top .3s .15s, transform .3s;
+        }
+    &::after {
+        transition: bottom .3s .15s, transform .3s;
+        }
+    &.active::before {
+        top: 9px;
+        transform: rotate(45deg);
+        box-shadow: 0 6px 0 rgba(0,0,0,0);
+        transition: box-shadow .15s, top .3s, transform .3s .15s;
+        }
+    &.active::after {
+        bottom: 9px;
+        transform: rotate(-45deg);
+        transition: bottom .3s, transform .3s .15s;
+        }
+    }
 .about {
-    margin-top: 20px;
+    margin-top: 124px;
+    @media (max-width: $r_tab) {
+        margin-top: 81px;
+    }  
     &__img {
         margin-bottom: 120px;
         min-height: 215px;
@@ -487,9 +652,9 @@ section {
         top: 50%;
         left: 50%;
         transform: translate(-48%, -29%);
-        @media (max-width: $r_tab) {
-            width: clamp(197px, 72.826vw - 5.894rem, 465px);
-            height: clamp(197px, 72.826vw - 5.894rem, 465px);
+        @media (max-width: $r_desk) {
+            width: clamp(197px, 42.949vw + 1.575rem, 465px);
+            height: clamp(197px, 42.949vw + 1.575rem, 465px);
             transform: translate(-13%, -26%);
 
         }
@@ -596,7 +761,7 @@ section {
     }
     &__text {
         max-width: 870px;
-        gap: 8px;
+        gap: 10px;
         @media (max-width: $r_tab) {
             gap: 15px;
         }
@@ -616,7 +781,6 @@ section {
         display: flex;
         gap: 40px;
         align-items: center;
-        max-height: 71px;
         @media (max-width: $r_desk) {
             img {
                 width: clamp(30px, 1.667vw + 1.458rem, 40px);
@@ -633,7 +797,7 @@ section {
         border-left: 1px solid rgba(1, 1, 1, .3);
     }
     &__item {
-        height: 148px;
+        height: 146px;
         align-content: center;
         text-align: center;
         border-right: 1px solid rgba(1, 1, 1, .3);
@@ -641,7 +805,7 @@ section {
         position: relative;
         transform-origin: top;
         @media (max-width: $r_desk) {
-            height: clamp(44px, 17.333vw - 1.583rem, 148px);
+            height: clamp(43px, 16.667vw - 1.479rem, 147px);
         }
         img {
             position: absolute;
@@ -650,6 +814,7 @@ section {
             left: 50%;
             transform: translate(-50%, -50%);
             @media (max-width: $r_desk) {
+                height: stretch;
                 height: -webkit-fill-available;
             }
         }
@@ -704,6 +869,9 @@ section {
     &__item:hover {
         .stack__description {
             transform: scale(1);
+            @media (max-width: $r_tab) {
+                transform: scale(1.3);
+            }
         }
         .img-blend {
             mix-blend-mode: inherit;
@@ -715,6 +883,9 @@ section {
 }
 .tariffs {
     margin-top: 179px;
+    @media (max-width: $r_tab) {
+        margin-top: 80px;
+    }
     &__title {
         flex-basis: 50%;
         position: relative;
@@ -729,6 +900,11 @@ section {
             z-index: -1;
             top: -49px;
             transform: translateX(-50%);
+            @media (max-width: $r_desk) {
+                width: clamp(138px, 0.321vw + 8.545rem, 140px);
+                height: clamp(138px, 0.321vw + 8.545rem, 140px);
+                transform: translateX(calc(-50% - 7px));
+            }
         }
     }
     &__text {
@@ -739,17 +915,54 @@ section {
         display: grid;
         grid-template-columns: 1fr;
         gap: 60px;
+        @media (max-width: $r_tab) {
+            gap: 40px;
+            margin-top: 40px;
+        }
     }
     &__head {
         gap: 20px;
         padding-bottom: 80px;
+        @media (max-width: $r_tab) {
+            padding-bottom: 30px;
+        }
     }
     &__item {
         display: flex;
         gap: 20px;
         padding-bottom: 59px;
+        @media (max-width: $r_tab) {
+            padding-bottom: 39px;
+            &:not(:last-child) {
+                .tariffs__description{
+                    gap: 15px;
+                }
+            }
+            &:last-child {
+                .tariffs__description{
+                    gap: 30px;
+                }
+            }
+            &:nth-child(2n) {
+                .tariffs__description-title {
+                    span {
+                        @media (max-width: $r_mobile_xs) {
+                            max-width: 100px;
+                        }
+                    }
+                }
+            }
+        }
+        @media (max-width: $r_mobile_s) {
+            gap: 40px;
+        }
         &:not(:last-child) {
             border-bottom: 1px solid $dark;
+        }
+        &:last-child {
+            @media (max-width: $r_tab) {
+                border-bottom: 1px solid $dark;
+        }
         }
         &:nth-child(2n) {
             p::after {
@@ -762,6 +975,14 @@ section {
         flex-direction: column;
         gap: 75px;
         flex-basis: 50%;
+        @media (max-width: $r_desk) {
+            justify-content: space-between;
+            font-size: clamp(12px, 0.641vw + 0.59rem, 16px);
+        }
+        @media (max-width: $r_mobile_s) {
+            flex-basis: 43%;
+            
+        }
     }
     &__description-title {
         display: flex;
@@ -773,10 +994,21 @@ section {
             line-height: 150%;
             opacity: 0.8;
             letter-spacing: 0.005em;
+            @media (max-width: $r_desk) {
+                font-size: clamp(10px, 0.962vw + 0.385rem, 16px);
+            }
         }
     }
     &__info {
         flex-basis: 50%;
+        @media (max-width: $r_desk) {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        @media (max-width: $r_mobile_s) {
+            flex-basis: 57%;
+        }
     }
     &__cost {
         margin-top: 40px;
@@ -784,6 +1016,11 @@ section {
         font-size: 42px;
         line-height: 150%;
         position: relative;
+        @media (max-width: $r_desk) {
+            margin-top: inherit;
+            font-size: clamp(22px, 3.205vw + 0.574rem, 42px);
+            line-height: normal;
+        }
         &::after {
             content: '';
             display: block;
@@ -795,6 +1032,10 @@ section {
             z-index: -1;
             top: 50%;
             transform: translate(-50%, -50%);
+            @media (max-width: $r_tab) {
+                    width: clamp(40px, 8.013vw + 0.497rem, 90px);
+                    height: clamp(40px, 8.013vw + 0.497rem, 90px);
+            }
         }
     }
     .include {
@@ -803,6 +1044,9 @@ section {
             font-size: 16px;
             line-height: 150%;
             margin-bottom: 20px;
+            @media (max-width: $r_desk) {
+                font-size: clamp(12px, 0.641vw + 0.59rem, 16px);
+            }
         }
         &__text {
             display: flex;
@@ -812,6 +1056,12 @@ section {
             font-size: 16px;
             line-height: 200%;
             opacity: 0.8;
+            @media (max-width: $r_desk) {
+                font-size: clamp(12px, 0.641vw + 0.59rem, 16px);
+            }
+            @media (max-width: $r_tab) {
+                gap: 5px;
+            }
             &::before {
                 display: block;
                 content: '';
@@ -819,28 +1069,52 @@ section {
                 height: 4px;
                 border-radius: 50%;
                 background-color: $dark;
+                @media (max-width: $r_tab) {
+                    width: 2px;
+                    height: 2px;
+                }
             }
         }
     }
 }
 .feedback {
     margin-top: 120px;
+    @media (max-width: $r_tab) {
+        margin-top: 80px;
+    }
     &__head {
         gap: 20px;
         position: relative;
+        @media (max-width: $r_tab) {
+            padding-bottom: 28px;
+        }
     }
     &__circle {
         height: 300px;
         width: 300px;
-        top: -29px;
-        transform: translateX(-50%);
-    }
-    &__triangle {
-        position: absolute;
-        width: 68px;
-        height: 67px;
-        top: 55px;
-        left: -28px;
+        top: 50%;
+        left: 0%;
+        transform: translate(-50%, -50%);
+        @media (max-width: $r_desk) {
+            height: clamp(190px, 29.891vw + 4.402rem, 300px);
+            width: clamp(190px, 29.891vw + 4.402rem, 300px);
+            transform: translate(-28%, -80%);
+        }
+        img {
+            position: absolute;
+            width: 68px;
+            height: 67px;
+            top: 0%;
+            left: 0%;
+            transform: translate(-40%, 100%);
+            @media (max-width: $r_tab) {
+                transform: translate(-50%, 15%);
+                right: 0%;
+                left: unset;
+                width: clamp(28px, 10.87vw - 0.967rem, 68px);
+                height: clamp(31px, 9.783vw - 0.508rem, 67px);
+            }
+        }   
     }
     &__title {
         flex-basis: 50%;
@@ -855,20 +1129,37 @@ section {
         gap: 20px;
         padding-bottom: 129px;
         border-bottom: 1px solid $dark;
+        @media (max-width: $r_tab) {
+            padding-bottom: 60px;
+            flex-direction: column;
+            gap: 60px;
+            margin-top: 36px;
+        }
     }
     &__contact {
         display: flex;
         flex-basis: 50%;
         align-items: flex-end;
+        @media (max-width: $r_tab) {
+            justify-content: center;
+            flex-basis: inherit;
+        }
     }
     &__forms {
         flex-basis: 50%;
+        @media (max-width: $r_tab) {
+            order: -1;
+            flex-basis: inherit;
+        }
     }
     &__label {
             font-weight: 400;
             font-size: 12px;
             line-height: 150%;
             opacity: 0.8;
+            @media (max-width: $r_tab) {
+                font-size: clamp(10px, 0.543vw + 0.489rem, 12px);
+            }
             &:not(:first-child) {
                 margin-top: 20px;
             }
@@ -882,16 +1173,15 @@ section {
         padding: 20px;
         height: 65px;
         background: $input-bg;
+        @media (max-width: $r_tab) {
+            height: 55px;
+        }
         &::placeholder {
             opacity: 0.2;
+            @media (max-width: $r_tab) {
+            font-size: clamp(10px, 0.543vw + 0.489rem, 12px);
+            }
         }
-    }
-    &__btn {
-        background-color: $accent;
-        font-weight: 700;
-        font-size: 16px;
-        line-height: 150%;
-        color: $light;
     }
     &__input-field {
         position: relative;
@@ -923,16 +1213,30 @@ section {
         transition: $tr;
         user-select: none;
         cursor: pointer;
+        @media (max-width: $r_tab) {
+            font-size: clamp(10px, 0.543vw + 0.489rem, 12px);
+        }
         &:hover {
             opacity: 1;
         }
     }
     &__btn {
+        background-color: $accent;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 150%;
+        color: $light;
         margin-top: 40px;
         height: 65px;
         width: 100%;
         padding: 20px;
         transition: $tr;
+        @media (max-width: $r_tab) {
+            font-size: clamp(12px, 1.087vw + 0.478rem, 16px);
+            margin-top: 30px;
+            height: 55px;
+            padding: 19px;
+        }
         &:hover {
             background: $accent-hover;
         }
@@ -963,15 +1267,38 @@ section {
 .footer {
     margin-top: 60px;
     margin-bottom: 42px;
+    @media (max-width: $r_tab) {
+        margin-top: 40px;
+        margin-bottom: 27px;
+    }
+    &__contact {
+        @media (max-width: $r_tab) {
+            order: -1;
+        }
+    }
     &__inner {
         grid-template-rows: repeat(2, 1fr);
         gap: 40px 10px;
+        @media (max-width: $r_tab) {
+            nav {
+                margin-bottom: 15px;
+            }
+            div {
+                margin-bottom: 15px;
+            }
+            gap: 15px 0;
+            grid-template-rows: unset;
+            grid-template-columns: 1fr;
+        }
     }
     &__text {
         font-weight: 400;
         font-size: 12px;
         line-height: 150%;
         opacity: 0.3;
+        @media (max-width: $r_tab) {
+            font-size: clamp(10px, 0.543vw + 0.489rem, 12px);
+        }
         span {
             text-decoration: underline;
             text-decoration-skip-ink: none;
@@ -979,9 +1306,15 @@ section {
     }
     .copy {
         text-align: left;
+        @media (max-width: $r_tab) {
+            text-align: center;
+        }
     }
     .course {
         text-align: right;
+        @media (max-width: $r_tab) {
+            text-align: center;
+        }
     }
 }
 .popupOverlay {
@@ -1005,6 +1338,7 @@ section {
     border: inherit;
     scale: 0;
     max-width: 600px;
+    width: 100%;
     margin: 0;
     z-index: 999;
     background-color: $bg;
@@ -1012,9 +1346,12 @@ section {
     left: 50%;
     transform: translate(-50%, 50%);
     transform-origin: left bottom;
-    padding: 55px 20px;
+    padding: 55px 20px 40px 20px;
     opacity: 0;
     transition: $tr;
+    @media (max-width: $r_tab) {
+        padding: 60px 10px;
+    }
     &__open {
         opacity: 1;
         scale: 1;
@@ -1024,6 +1361,10 @@ section {
         position: absolute;
         top: 20px;
         right: 20px;
+        @media (max-width: $r_tab) {
+            top: 10px;
+            right: 10px;
+        }
         img {
             width: 20px;
             height: 20px;
@@ -1040,6 +1381,10 @@ section {
         padding-inline: 80px;
         padding-bottom: 30px;
         margin-bottom: 40px;
+        @media (max-width: $r_tab) {
+            padding-inline: 30px;
+            padding-bottom: 40px;
+        }
     }
     &__title {
         font-weight: 700;
