@@ -186,7 +186,7 @@ import './styles/main.scss'
     if (window.innerWidth <= 768) {
       menu.classList.toggle('active');
       contact.classList.toggle('active');
-      overlay.classList.toggle('popupOverlay__open');
+      overlay.classList.toggle('burgerOverlay__open');
     }
   }
 
